@@ -1,0 +1,23 @@
+# Dependencies
+node_modules
+public
+client
+
+#app-logs
+app-combined.log
+app-error.log
+app-information.log
+app-warning.log
+exception.log
+rejections.log
+app-daily-impact.log
+
+# yarn error logs
+yarn-error.log
+
+# Environment variables
+.env*
+!.env*.example
+
+# Code coverage
+coverage
