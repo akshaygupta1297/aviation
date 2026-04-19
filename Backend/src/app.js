@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const dotenv = require("dotenv");
+const routes = require("./routes");
 // const logger = require("./src/config/logger");
 // const fs = require("fs");
 dotenv.config();
@@ -31,6 +32,9 @@ mongoose.connection.on("connected", (connected) => {
   console.log("connected with data base....");
   //   logger.info("connected with data base");
 });
+
+// Use your API routes
+app.use("/news-app/api/v1", routes);
 
 app.use(express.static(path.resolve(__dirname, "public")));
 /* Front end build */
