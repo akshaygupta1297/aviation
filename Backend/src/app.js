@@ -34,7 +34,7 @@ mongoose.connection.on("connected", (connected) => {
 });
 
 // Use your API routes
-app.use("/news-app/api/v1", routes);
+app.use("/aviation-app/api/v1", routes);
 
 app.use(express.static(path.resolve(__dirname, "public")));
 /* Front end build */
