@@ -2,6 +2,14 @@ const express = require("express");
 const logger = require("../config/logger");
 const app = express();
 
+const adminRoutes = require("../routes/adminRoutes/adminRoutes");
+
+
+// Admin Routes
+app.use("/admin", adminRoutes);
+
+
+
 app.get("/health", (req, res) => {
   const healthCheckResponse = {
     status: "ok",
