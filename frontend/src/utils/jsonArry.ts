@@ -1,3 +1,8 @@
+import TickIcon from "../assets/images/TickIcon.png"
+import PlanIcon from "../assets/images/PlanIcon.png"
+import CancleIcon from "../assets/images/CancleIcon.png"
+import DollorIcon from "../assets/images/DollerIcon.png"
+
 // ─── Dummy Data ───────────────────────────────────────────────────────────────
 
 export const ticketSalesDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -23,8 +28,8 @@ export const routeData = [
 ];
 
 export const stats = [
-    { label: "Completed Flights", value: "125", change: "+1.35%", up: true, icon: "✓" },
-    { label: "Active Flights", value: "80", change: "+3.68%", up: true, icon: "⟳" },
-    { label: "Cancelled Flights", value: "25", change: "-1.45%", up: false, icon: "✕" },
-    { label: "Total Revenue", value: "$15,000", change: "+6.94%", up: true, icon: "$" },
+    { label: "Completed Flights", value: "125", change: "+1.35%", up: true, icon: TickIcon },
+    { label: "Active Flights", value: "80", change: "+3.68%", up: true, icon: PlanIcon },
+    { label: "Cancelled Flights", value: "25", change: "-1.45%", up: false, icon: CancleIcon },
+    { label: "Total Revenue", value: "$15,000", change: "+6.94%", up: true, icon: DollorIcon },
 ];

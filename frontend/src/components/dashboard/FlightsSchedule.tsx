@@ -1,6 +1,6 @@
 // ─── Flights Schedule Area Chart ─────────────────────────────────────────────
 import ReactECharts from "echarts-for-react";
-import { DARK2, GOLD, GRAY, WHITE } from "@/utils/colors";
+import { DARK2, GOLD, GRAY, WHITE_1 } from "@/utils/colors";
 import { domesticFlights, flightScheduleMonths, internationalFlights } from "@/utils/jsonArry";
 import { ChevronDown } from "@/utils/utilsAVG";
 
