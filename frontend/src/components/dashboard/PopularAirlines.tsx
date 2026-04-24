@@ -3,7 +3,7 @@ import ReactECharts from "echarts-for-react";
 import GraphPlan from "../../assets/images/GraphPlan.png";
 import { airlineData } from "@/utils/jsonArry";
 import Image from "next/image";
-import { AIRLINE_COLORS, DARK2, GOLD, WHITE } from "@/utils/colors";
+import { AIRLINE_COLORS, DARK2, GOLD, WHITE_1 } from "@/utils/colors";
 import { DotsMenu } from "@/utils/utilsAVG";
 
 export function PopularAirlinesChart() {
@@ -14,7 +14,7 @@ export function PopularAirlinesChart() {
             backgroundColor: DARK2,
             borderColor: GOLD,
             borderWidth: 1,
-            textStyle: { color: WHITE, fontSize: 12 },
+            textStyle: { color: WHITE_1, fontSize: 12 },
             formatter: "{b}: <b>{c}%</b>",
         },
         series: [

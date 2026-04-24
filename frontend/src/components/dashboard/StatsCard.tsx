@@ -1,6 +1,7 @@
 // ─── Stat Cards ───────────────────────────────────────────────────────────────
 
 import { stats } from "@/utils/jsonArry";
+import Image from "next/image";
 
 export function StatCards() {
   return (
@@ -20,7 +21,8 @@ export function StatCards() {
             </span>
           </div>
           <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-500 text-base font-bold shrink-0">
-            {s.icon}
+            {/* {s.icon} */}
+            <Image src={s.icon} alt="Icons" />
           </div>
         </div>
       ))}

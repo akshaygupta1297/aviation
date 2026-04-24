@@ -1,6 +1,6 @@
 // ─── Ticket Sales Bar Chart ───────────────────────────────────────────────────
 import ReactECharts from "echarts-for-react";
-import { DARK2, GOLD, GOLD_LIGHT, GRAY, WHITE } from "@/utils/colors";
+import { DARK2, GOLD, GOLD_LIGHT, GRAY, WHITE_1 } from "@/utils/colors";
 import { ticketSalesData, ticketSalesDays } from "@/utils/jsonArry";
 import { ChevronDown } from "@/utils/utilsAVG";
 
@@ -13,7 +13,7 @@ export function TicketSalesChart() {
       backgroundColor: DARK2,
       borderColor: GOLD,
       borderWidth: 1,
-      textStyle: { color: WHITE, fontSize: 12 },
+      textStyle: { color: WHITE_1, fontSize: 12 },
       formatter: (params: any[]) => {
         const p = params[0];
         return `<span style="color:${GOLD};font-weight:600">${p.name}</span><br/>${p.value.toLocaleString()} tickets`;
