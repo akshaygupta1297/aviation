@@ -28,7 +28,7 @@ const createUserOTP = async (userBody) => {
     throw new ApiError(httpStatus.status.INTERNAL_SERVER_ERROR, error.message);
   }
 };
-const createUser = async (userBody) => {
+const createUser = async (userBody, deviceData, locationData) => {
 
   try {
     logger.info("create user API called");
@@ -43,7 +43,20 @@ const createUser = async (userBody) => {
       logger.error("Something went wrong");
       throw new ApiError(httpStatus.status.UNAUTHORIZED, "Something went wrong");
     }
-    return newUser;
+    await emailService.accountCreationEmailHTML("Account Creation",
+      newUser.email,
+      newUser.firstName,
+      newUser.role,
+      deviceData,
+      locationData
+    );
+    const token = jwtEncode(newUser.userId, newUser.email, newUser.userType);
+
+    newUser.password = undefined;
+    return {
+      user: newUser,
+      token,
+    };
   } catch (error) {
     logger.error(`createUser => user service has error ::> ${error.message}`);
     console.error("createUser => user service has error ::> ", error.message);
@@ -80,15 +93,16 @@ const login = async (email, password, deviceData, locationData) => {
     const token = jwtEncode(user.userId, user.email, user.userType);
 
     user.password = undefined;
+    console.log(locationData);
 
-    await emailService.accountLoginEmail(
-      "Aviation App - Account Login",
-      user.email,
-      user.firstName,
-      user.userType,
-      deviceData,
-      locationData
-    );
+    // await emailService.accountLoginEmail(
+    //   "Aviation App - Account Login",
+    //   user.email,
+    //   user.firstName,
+    //   user.userType,
+    //   deviceData,
+    //   locationData
+    // );
     return {
       user: user,
       token,

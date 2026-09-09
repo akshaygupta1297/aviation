@@ -7,8 +7,6 @@ const {
 const logger = require("../../config/logger");
 
 const airportsService = require("../../services/airportService/airport.service");
-const { getLocationData } = require("../../config/geoLocation");
-
 
 
 const insertAirportsController = catchAsync(async (req, res) => {
@@ -45,6 +43,8 @@ const getAirportsController = catchAsync(async (req, res) => {
 
         const query = req.query
         const locationData = {};
+        console.log(locationData);
+
 
         const result = await airportsService.getAirportsService(query, locationData);
 

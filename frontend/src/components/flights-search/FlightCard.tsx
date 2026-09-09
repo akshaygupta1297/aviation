@@ -21,7 +21,7 @@ const FlightCard: React.FC<FlightCardProps> = ({ journey, passengers }) => {
     const firstLeg = journey[0];
     const lastLeg = journey[journey.length - 1];
     const passengerNo = passengers.split("-").map(Number);
-    console.log(passengers, passengerNo, "passengerNo[2]");
+    // console.log(passengers, passengerNo, "passengerNo[2]");
 
     // Calculate total duration including layovers
     const totalDuration = calculateDuration(firstLeg.departureDateTime, lastLeg.arrivalDateTime);

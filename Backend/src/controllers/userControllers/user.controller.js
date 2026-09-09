@@ -12,7 +12,21 @@ const { getLocationData } = require("../../config/geoLocation");
 const createUser = catchAsync(async (req, res) => {
   try {
     logger.info("create user API called");
-    const user = await userService.createUser(req.body);
+    const uaString = req.headers['user-agent'];
+
+    const parser = new UAParser(uaString);
+    const deviceData = parser.getResult();
+    // const ip = req.socket.remoteAddress;
+
+    // WAIT here
+    const locationData = await getLocationData();
+
+    console.log(deviceData.browser.name); // e.g., Chrome
+    console.log(deviceData.os.name);      // e.g., Windows
+    console.log(deviceData.device.model);  // e.g., iPhone
+    console.log(locationData);
+
+    const user = await userService.createUser(req.body, deviceData, locationData);
     logger.info("user created successfully");
     res
       .status(httpStatus.status.OK)

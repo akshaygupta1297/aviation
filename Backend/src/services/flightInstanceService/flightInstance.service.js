@@ -38,7 +38,7 @@ const generateFlightInstancesService = async (daysAhead = 1) => {
                 continue;
             }
 
-            const flightRoute = await FlightRoute.findOne({ routeId: flight.routeId });
+            const flightRoute = await FlightRoute.findOne({ routeId: flight.routeId, status: "ACTIVE" });
             if (!flightRoute) {
                 logger.warn(`Route not found for flight ${flight.flightNumber}`);
                 continue;
