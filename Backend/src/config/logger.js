@@ -72,9 +72,9 @@ const logger = winston.createLogger({
     new winston.transports.Console({
       stderrLevels: ["error"],
     }),
-    new winston.transports.File({
-      filename: "app-combined.log",
-    }),
+    // new winston.transports.File({
+    //   filename: "app-combined.log",
+    // }),
     new winston.transports.File({
       filename: "app-warning.log",
       level: "warn",
@@ -87,17 +87,17 @@ const logger = winston.createLogger({
       filename: "app-error.log",
       level: "error",
     }),
-    new winston.transports.File({
-      filename: "app-daily-impact.log",
-      level: "daily",
-      format: winston.format.combine(dailyFilter()),
-    }),
+    // new winston.transports.File({
+    //   filename: "app-daily-impact.log",
+    //   level: "daily",
+    //   format: winston.format.combine(dailyFilter()),
+    // }),
   ],
   exceptionHandlers: [
-    new winston.transports.File({ filename: "exception.log" }),
+    new winston.transports.File({ filename: "app-exception.log" }),
   ],
   rejectionHandlers: [
-    new winston.transports.File({ filename: "rejections.log" }),
+    new winston.transports.File({ filename: "app-rejections.log" }),
   ],
 });
 

@@ -1,5 +1,5 @@
 const signUpEmailTemplate = (name, userType, deviceData, locationData) => {
-    return `<!doctype html>
+  return `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -80,7 +80,7 @@ const signUpEmailTemplate = (name, userType, deviceData, locationData) => {
                 >
                   Your <strong>${userType}</strong> account has been login using
                   <strong
-                    >${deviceData?.browser?.name || "Unknown Browser"}</strong
+                    >${deviceData?.browser?.name || "Unknown"}</strong
                   >
                   browser on
                   <strong>${deviceData?.os?.name || "Unknown Device"}</strong>.
@@ -98,7 +98,7 @@ const signUpEmailTemplate = (name, userType, deviceData, locationData) => {
                   <strong>
                     ${locationData?.city || "Unknown City"},
                     ${locationData?.region || ""}, ${locationData?.country_name
-        || ""}
+    || ""}
                   </strong>
                 </p>
                 <p
@@ -153,5 +153,5 @@ const signUpEmailTemplate = (name, userType, deviceData, locationData) => {
 }
 
 module.exports = {
-    signUpEmailTemplate
+  signUpEmailTemplate
 }

@@ -57,7 +57,7 @@ const Header = () => {
                         <Dropdown>
                             <Dropdown.Trigger>
 
-                                <div className="flex items-center gap-2 text-amber-700 text-md font-bold font-medium hover:opacity-80">
+                                <div className="flex items-center gap-2 text-amber-700 text-md font-medium hover:opacity-80">
                                     Contact Us
                                     {/* <BiQuestionMark size={20} /> */}
                                 </div>
@@ -88,7 +88,7 @@ const Header = () => {
                         {/* Profile */}
                         <Dropdown>
                             <Dropdown.Trigger>
-                                <div className="flex items-center gap-1 lg:gap-2.5 pl-1 pr-2 py-1.5 rounded-xl hover:bg-gray-50 transition-colors group">
+                                <div className="flex items-center gap-1 lg:gap-2.5 pl-1 pr-2 py-1.5 rounded-xl transition-colors group">
                                     {/* Avatar */}
                                     <Avatar size="sm" className="shrink-0">
                                         {userAvatar ? (
@@ -112,7 +112,7 @@ const Header = () => {
                                 </div>
                             </Dropdown.Trigger>
 
-                            {userEmail ? <Dropdown.Popover>
+                            {userEmail ? <Dropdown.Popover className="bg-amber-100">
                                 <div className="px-3 pt-3 pb-1">
                                     <div className="flex items-center gap-2">
                                         <Avatar size="sm">

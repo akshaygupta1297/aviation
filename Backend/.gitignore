@@ -8,8 +8,8 @@ app-combined.log
 app-error.log
 app-information.log
 app-warning.log
-exception.log
-rejections.log
+app-exception.log
+app-rejections.log
 app-daily-impact.log
 
 # yarn error logs

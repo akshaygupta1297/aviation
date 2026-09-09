@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { format } from 'date-fns'
+import { format } from 'date-fns';
+import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import Header from "@/components/common/Header";
 import FlightSearchSidebar, { departureTimeFilters } from "@/components/flights-search/FlightSearchSidebar";
 import DateCarousel from "@/components/flights-search/DateCarousel";
@@ -41,7 +42,7 @@ function FlightsSearchContent() {
         airlines: [] as string[],
         maxPrice: 30000,
     });
-    console.log(filters);
+    // console.log(filters);
 
     useEffect(() => {
         if (from && to && currentDate) {
@@ -153,14 +154,14 @@ function FlightsSearchContent() {
                 (acc, flight) => acc + flight.baseFare,
                 0
             );
-            console.log(totalPriceA, "><><><><><>");
+            // console.log(totalPriceA, "><><><><><>");
 
 
             const totalPriceB = b.reduce(
                 (acc, flight) => acc + flight.baseFare,
                 0
             );
-            console.log(totalPriceB, "<><><><><><");
+            // console.log(totalPriceB, "<><><><><><");
 
 
             // =====================================
@@ -245,9 +246,16 @@ function FlightsSearchContent() {
         }
     }, [sortedFlights])
 
+    const listRef = useRef<HTMLDivElement>(null);
 
+    const rowVirtualizer = useWindowVirtualizer({
+        count: sortedFlights.length,
+        estimateSize: () => 380,
+        scrollMargin: listRef.current?.offsetTop ?? 0,
+        overscan: 2,
+    });
 
-    console.log(sortedFlights, lowestPrice, "chal");
+    // console.log(sortedFlights, lowestPrice, "chal");
 
     return (
         <main className="flex-1 w-full max-w-7xl mx-auto mt-10 px-4 py-6 flex flex-col md:flex-row gap-6">
@@ -290,10 +298,23 @@ function FlightsSearchContent() {
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div>
                         </div>
                     ) : sortedFlights.length > 0 ? (
-                        <div>
-                            {sortedFlights.map((journey, index) => (
-                                <FlightCard key={index} journey={journey} passengers={passengers} />
-                            ))}
+                        <div ref={listRef} className="relative w-full" style={{ height: `${rowVirtualizer.getTotalSize()}px` }}>
+                            {rowVirtualizer.getVirtualItems().map((virtualItem) => {
+                                const journey = sortedFlights[virtualItem.index];
+                                return (
+                                    <div
+                                        key={virtualItem.key}
+                                        data-index={virtualItem.index}
+                                        ref={rowVirtualizer.measureElement}
+                                        className="absolute top-0 left-0 w-full"
+                                        style={{
+                                            transform: `translateY(${virtualItem.start - rowVirtualizer.options.scrollMargin}px)`,
+                                        }}
+                                    >
+                                        <FlightCard journey={journey} passengers={passengers} />
+                                    </div>
+                                );
+                            })}
                         </div>
                     ) : (
                         <div className="bg-white rounded-md shadow-sm border border-gray-200 p-8 text-center">

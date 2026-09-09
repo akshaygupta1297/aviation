@@ -83,6 +83,39 @@ export async function loginAdmin(
         return { isLogin: false }
     }
 }
+export async function userSignup(
+    dispatch: AppDispatch,
+    payload: LoginPayload
+): Promise<{ isLogin: boolean }> {
+    dispatch(loginStart());
+
+    try {
+        const responce = await apiFetch<LoginResponse>("/user/create", {
+            method: "POST",
+            body: JSON.stringify(payload),
+        });
+
+        const data = responce.data
+
+        // Store token in localStorage for persistence across refreshes
+        saveToken(data.token)
+
+        // Dispatch user data into Redux store
+        dispatch(
+            loginSuccess({
+                name: `${data.user.firstName} ${data.user.lastName}`,
+                email: data.user.email,
+                role: data.user.role,
+                avatar: data.user.avatar,
+                token: data.token,
+            })
+        );
+        return { isLogin: true }
+    } catch (error) {
+        dispatch(loginFailure((error as Error).message));
+        return { isLogin: false }
+    }
+}
 export async function loginUser(
     dispatch: AppDispatch,
     payload: LoginPayload
@@ -90,7 +123,7 @@ export async function loginUser(
     dispatch(loginStart());
 
     try {
-        const responce = await apiFetch<LoginResponse>("/admin/login", {
+        const responce = await apiFetch<LoginResponse>("/user/login", {
             method: "POST",
             body: JSON.stringify(payload),
         });
